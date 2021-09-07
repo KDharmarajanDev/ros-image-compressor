@@ -1,0 +1,3 @@
+<launch>
+    <node name="image_encoder" pkg="image_compressor" type="image_compressor_main" output="screen"/>
+</launch>
