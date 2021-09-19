@@ -1,2 +1,2 @@
 sensor_msgs/Image image
-int frame_size
+int32 frame_size

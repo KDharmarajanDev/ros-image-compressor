@@ -7,7 +7,7 @@
 #include <image_compressor/topic_compressor.h>
 
 void setupCompressor(std::vector<TopicCompressor> & topicCompressors, std::string const & topicName,
-                     ros::NodeHandle const & nodeHandle);
+                     ros::NodeHandle & nodeHandle);
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "image_compressor");
@@ -23,6 +23,6 @@ int main(int argc, char **argv) {
 }
 void setupCompressor(std::vector<TopicCompressor> & topicCompressors,
                      std::string const & topicName,
-                     ros::NodeHandle const & nodeHandle) {
+                     ros::NodeHandle & nodeHandle) {
     topicCompressors.emplace_back(topicName, nodeHandle);
 }

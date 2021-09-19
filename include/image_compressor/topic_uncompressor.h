@@ -9,12 +9,12 @@
 class TopicUncompressor {
 private:
     image_transport::ImageTransport it;
-    image_transport::Subscriber sub;
+    ros::Subscriber sub;
     image_transport::Publisher originalImagePublisher;
     ros_h264_streamer::H264Decoder *decoder;
 
 public:
-    TopicUncompressor (std::string const & topicName, ros::NodeHandle const & nodeHandle);
+    TopicUncompressor (std::string const & topicName, ros::NodeHandle & nodeHandle);
 
     ~TopicUncompressor() {
         if (decoder) {

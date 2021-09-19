@@ -23,18 +23,27 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-if(catkin_FOUND)
+add_message_files(
+        FILES
+        EncodedImage.msg
+)
+
+generate_messages(
+        DEPENDENCIES
+        sensor_msgs
+)
+
   catkin_package(
     INCLUDE_DIRS include
     LIBRARIES ${PROJECT_NAME}
     DEPENDS roscpp
   )
+
   find_package(dynamic_graph_bridge_msgs)
     if(${dynamic_graph_bridge_msgs_FOUND})
       include_directories(${dynamic_graph_bridge_msgs_INCLUDE_DIRS})
       add_definitions("-DHAS_DGBRIDGE_MSGS")
     endif()
-endif()
 
 if(NOT WIN32)
 set(ros_h264_streamer_src
@@ -66,11 +75,6 @@ install(TARGETS ${SHOULD_INSTALL}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-)
-
-add_message_files(
-        FILES
-        EncodedImage.msg
 )
 
 add_executable(image_compressor_main src/image_compressor_main.cpp src/topic_compressor.cpp)
