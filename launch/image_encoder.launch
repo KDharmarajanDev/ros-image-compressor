@@ -1,3 +1,6 @@
 <launch>
-    <node name="image_encoder" pkg="image_compressor" type="image_compressor_main" output="screen"/>
+    <arg name="image_topics" default="[]"/>
+    <node name="image_encoder" pkg="image_compressor" type="image_compressor_main" output="screen">
+        <rosparam param="compress_video_topics" subst_value="True">$(arg image_topics)</rosparam>
+    </node>
 </launch>

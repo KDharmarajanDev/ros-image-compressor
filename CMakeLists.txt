@@ -4,7 +4,9 @@ project(image_compressor)
 if(NOT WIN32)
 find_package(catkin REQUIRED COMPONENTS
         roscpp
-        image_transport)
+        image_transport
+        message_generation
+        sensor_msgs)
 include_directories(${catkin_INCLUDE_DIRS})
 else()
 add_definitions("-D_WIN32_WINNT=0x0501")
@@ -64,6 +66,11 @@ install(TARGETS ${SHOULD_INSTALL}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+add_message_files(
+        FILES
+        EncodedImage.msg
 )
 
 add_executable(image_compressor_main src/image_compressor_main.cpp src/topic_compressor.cpp)
