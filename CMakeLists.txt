@@ -81,6 +81,10 @@ add_executable(image_compressor_main src/image_compressor_main.cpp src/topic_com
 target_link_libraries(image_compressor_main ${catkin_LIBRARIES} ros_h264_streamer)
 add_dependencies(image_compressor_main image_compressor_generate_messages_cpp)
 
+add_executable(image_uncompressor_main src/image_uncompressor_main.cpp src/topic_uncompressor.cpp)
+target_link_libraries(image_uncompressor_main ${catkin_LIBRARIES} ros_h264_streamer)
+add_dependencies(image_uncompressor_main image_uncompressor_generate_messages_cpp)
+
 if (CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
   roslaunch_add_file_check(launch)

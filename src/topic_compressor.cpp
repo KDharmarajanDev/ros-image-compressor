@@ -11,12 +11,13 @@ void TopicCompressor::receiveImageCallback (sensor_msgs::ImageConstPtr const & m
     if (!encoder) {
         encoder = new ros_h264_streamer::H264Encoder(msg->width, msg->height, 5, 30, 30, msg->encoding);
     }
+    ROS_INFO("RECEIVED IMAGE!");
     ros_h264_streamer::H264EncoderResult result = encoder->encode(msg);
     image_compressor::EncodedImage outMessage;
     outMessage.image.header = msg->header;
     // IMPORTANT: Height field is set as the frame_size
     outMessage.image.height = msg->height;
-
+    outMessage.image.width = msg->width;
     outMessage.image.encoding = msg->encoding;
     outMessage.image.is_bigendian = msg->is_bigendian;
     outMessage.image.step = msg->step;

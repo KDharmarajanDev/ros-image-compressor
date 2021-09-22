@@ -1,5 +1,5 @@
 <launch>
-    <arg name="image_topics" default="[]"/>
+    <arg name="image_topics" default="[/usb_cam/image_raw]"/>
     <node name="image_encoder" pkg="image_compressor" type="image_compressor_main" output="screen">
         <rosparam param="compress_video_topics" subst_value="True">$(arg image_topics)</rosparam>
     </node>

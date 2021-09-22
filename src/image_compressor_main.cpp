@@ -13,9 +13,10 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "image_compressor");
     ros::NodeHandle rosHandle;
     std::vector<std::string> compressedTopics;
-    rosHandle.getParam("compress_video_topics", compressedTopics);
+    rosHandle.getParam("/image_encoder/compress_video_topics", compressedTopics);
     std::vector<TopicCompressor> topicCompressors;
     for (std::string const & topicName : compressedTopics) {
+        ROS_INFO("added");
         setupCompressor(topicCompressors, topicName, rosHandle);
     }
     ros::spin();
